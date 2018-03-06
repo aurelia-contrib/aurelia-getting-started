@@ -20,9 +20,19 @@ Structure will follow.
 
 
 # How to contribute
-Write a small document for one of the topics listed in issues and create a pull request
+There is a simple canban board for tracking our progress:
+https://github.com/aurelia-contrib/aurelia-getting-started/projects
+
+Most issues have an educated guess estimate in hours. Feel free to pick any.
+If it is labeled 'contribute_to_core' then actual Pull Request should target one of the core repositories.
+We try to provide guidance on where exactly the contribution is needed and where to get information.
+
+
+Write a small document for one of the topics listed in issues and create a pull request.
 
 If you feel there is a need for article and it is not listed in issues, create an issue.
+
+If there is a common question that can be added to F.A.Q. Well... you get the drill.
 
 # How else can I help Aurelia?
 
