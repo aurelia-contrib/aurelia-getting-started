@@ -9,7 +9,7 @@
     "request": "launch",
     "name": "Debug CLI",
     "program": "${workspaceRoot}/node_modules/aurelia-cli/bin/aurelia-cli.js",  // this is the cli executable
-    "args": [
+    "args": [ // arguments to pass to cli i.e. run --watch, test, build etc
         "run",
         "--watch"
     ],
