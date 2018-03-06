@@ -46,8 +46,8 @@ module.exports = {
 // extensions that are used
     extensions: [".ts", ".js"],
 
-// directories where to look for modules converted to absolute paths
-    modules: ["src", "node_modules"].map(x => path.resolve(x)),
+// directories where to look for modules
+    modules: ["src", "node_modules"]
   },
 
   module: {
@@ -62,8 +62,16 @@ module.exports = {
     ]
   },  
 
-// Here we add AureliaPlugin to webpack pipelinew and tell it to grab everything under src directory of our project
+// Here we add AureliaPlugin to webpack pipeline and tell it to grab everything under src directory of our project
 // detailed plugin options could be found here https://github.com/aurelia/webpack-plugin/wiki/AureliaPlugin-options
+
+// Jods4:
+// Basically includeAll replaces PLATFORM.moduleName annotations by assuming everything in the glob might be loaded by Aurelia.
+// This works and it's nice for large codebases because they don't need to modify their code to use Webpack.
+// Only use it as a starting point if you are migrating to webpack from other loader/bundler
+// With this setting you can't do code splitting, you loose tree shaking, exports renaming, scope hoisting, etc.
+// It's also good for small projects, experiments, demos, PoC.  
+  
   plugins: [
     new AureliaPlugin({ includeAll: "src" }),
   ],
