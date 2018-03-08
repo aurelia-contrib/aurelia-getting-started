@@ -20,7 +20,7 @@ Ok, how to support it?
 
 1. bootstrap your Aurelia app by aurelia-cli with `requirejs` or `systemjs`.
 
-> I [@huochunpeng](https://github.com/huochunpeng) don't have a solution for `webpack` yet since I don't use it. But you are more than welcome to update this doc with `webpack` config.
+> This guide will probably be updated to support webpack, especially if you provide a pull request for it😀
 
 2. update `aurelia_project/aurelia.json` file's `markupProcessor` section to add `*.md` files.
 
