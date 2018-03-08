@@ -20,7 +20,7 @@ Ok, how to support it?
 
 1. bootstrap your Aurelia app by aurelia-cli with `requirejs` or `systemjs`.
 
-> I don't have a solution for `webpack` yet since I don't use it. But you are welcome to update this doc with `webpack` config.
+> I [@huochunpeng](https://github.com/huochunpeng) don't have a solution for `webpack` yet since I don't use it. But you are more than welcome to update this doc with `webpack` config.
 
 2. update `aurelia_project/aurelia.json` file's `markupProcessor` section to add `*.md` files.
 
@@ -33,7 +33,9 @@ Ok, how to support it?
 
 3. `npm install --save-dev gulp-if gulp-insert gulp-marked lazypipe`
 
-4. update `aurelia-Project/tasks/process-markup.js`. **Now, enjoy writing Markdown!**
+   or `yarn add -D gulp-if gulp-insert gulp-marked lazypipe`
+
+4. update `aurelia-Project/tasks/process-markup.js`.
 
 ```
 import gulp from 'gulp';
@@ -65,3 +67,5 @@ export default function processMarkup() {
 ```
 
 BTW, you can just literally write `<require from="./my-comp"></require>` in your md files.
+
+Now, enjoy writing Markdown!
