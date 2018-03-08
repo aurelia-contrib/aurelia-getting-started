@@ -4,7 +4,7 @@ When you build an Aurelia app as a live tutorial, it's convenient to use Markdow
 
 Why not to pair your `input-tutorial.js` with `input-tutorial.md`?
 
-```
+```markdown
 # Input value binding tutorial
 
 This is how you use `value.bind` on `input` tag. `<input type="text" value.bind="value">`
@@ -37,7 +37,7 @@ Ok, how to support it?
 
 4. update `aurelia-Project/tasks/process-markup.js`.
 
-```
+```javascript
 import gulp from 'gulp';
 import changedInPlace from 'gulp-changed-in-place';
 import project from '../aurelia.json';
