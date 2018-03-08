@@ -63,3 +63,5 @@ export default function processMarkup() {
     .pipe(build.bundle());
 }
 ```
+
+BTW, you can just literally write `<require from="./my-comp"></require>` in your md files.
