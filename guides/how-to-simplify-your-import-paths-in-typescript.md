@@ -66,7 +66,7 @@ import {log} from '@services/log';
 - How does this relate to the `path` section of `aurelia.json`?
 
 
-## Importing Folders as Modules
+## Importing Folders as Modules (Barrel)
 Underneath an example of some imports from the folder `services`. This could feel like your doing some duplication, the path contains `log` and we import the `Log`.
 
 ```typescript
@@ -86,3 +86,5 @@ This can be accomplished by creating an index.ts file, which serves as the entry
 export * from './log';
 export * from './signalr-dispatcher';
 ```
+
+More info about this topic can be found [here](https://github.com/basarat/typescript-book/blob/master/docs/tips/barrel.md)
