@@ -74,7 +74,7 @@ import { Log } from '../../services/log';
 import { SignalrDispatcher } from '../../services/signalr-dispatcher';
 ```
 
-But maybe you prefere
+But maybe you prefer
 
 ```typescript
 import { Log, SignalrDispatcher } from '../../services/index';
