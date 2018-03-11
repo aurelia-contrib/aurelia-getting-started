@@ -1,5 +1,6 @@
 # How to simplify your import paths in Typescript
 
+## Path mapping
 When your project starts to grow it's not unusual to end up with paths like this. This make it difficult to refactor and slow to add new imports.
 
 ```typescript
@@ -61,5 +62,29 @@ and you imports like this
 import {log} from '@services/log';
 ```
 
-## TODO
+### TODO
 - How does this relate to the `path` section of `aurelia.json`?
+
+
+## Importing Folders as Modules (Barrel)
+Underneath an example of some imports from the folder `services`. This could feel like your doing some duplication, the path contains `log` and we import the `Log`.
+
+```typescript
+import { Log } from '../../services/log';
+import { SignalrDispatcher } from '../../services/signalr-dispatcher';
+```
+
+But maybe you prefer
+
+```typescript
+import { Log, SignalrDispatcher } from '../../services/index';
+```
+
+This can be accomplished by creating an index.ts file, which serves as the entry point from which you're exporting the folder content.
+
+```
+export * from './log';
+export * from './signalr-dispatcher';
+```
+
+More info about this topic can be found [here](https://github.com/basarat/typescript-book/blob/master/docs/tips/barrel.md)
