@@ -10,3 +10,6 @@ Aurelia plugin [aurelia-open-id-connect](https://github.com/aurelia-contrib/aure
 hooks `oidc-client-js` into aurelia router. And allows you to not write a lot of boilerplate code.
 
 
+# Utility
+## Typed Observable
+Aurelia Plugin [aurelia-typed-observable-plugin](https://github.com/aurelia-contrib/aurelia-typed-observable-plugin) provides enhanced implementation of `@observable` and `@bindable` decorators
