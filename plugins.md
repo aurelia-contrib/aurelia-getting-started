@@ -6,10 +6,17 @@ Wouldn't it be nice to have a central place that had it all? So once found - the
 
 # Authentication
 ## OpenID Connect
-Aurelia plugin [aurelia-open-id-connect](https://github.com/aurelia-contrib/aurelia-open-id-connect)  
+[aurelia-open-id-connect](https://github.com/aurelia-contrib/aurelia-open-id-connect)  
 hooks `oidc-client-js` into aurelia router. And allows you to not write a lot of boilerplate code.
 
 
 # Utility
+
 ## Typed Observable
-Aurelia Plugin [aurelia-typed-observable-plugin](https://github.com/aurelia-contrib/aurelia-typed-observable-plugin) provides enhanced implementation of `@observable` and `@bindable` decorators
+[aurelia-typed-observable-plugin](https://github.com/aurelia-contrib/aurelia-typed-observable-plugin) 
+Want to have `age:number` in your view model bound to `<input value.bind="age"/>`?
+Now you can. 
+```
+@bindable
+age:number
+```
