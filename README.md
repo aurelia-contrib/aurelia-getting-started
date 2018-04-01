@@ -22,6 +22,7 @@ Structure will follow.
 # What you can find here
 
 * [Guides](guides) a cookbook of aurelia task oriented recipes
+* [Plugins](plugins.md) List of aurelia plugins that are moved by their owners to aurelia-contrib.
 * [Config files explained](config-files) A collection of config files to get you started from scratch. And in case you ever wondered what that line in config file does? Here we try to explain all those settings and how they affect your project. Send a pull request to add your own commented config.
 
 
