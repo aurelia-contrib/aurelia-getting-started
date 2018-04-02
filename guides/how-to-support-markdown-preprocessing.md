@@ -35,7 +35,7 @@ Ok, how to support it?
 
    or `yarn add -D gulp-if gulp-insert gulp-marked lazypipe`
 
-4. update `aurelia-Project/tasks/process-markup.js`.
+4. update `aurelia_project/tasks/process-markup.js`.
 
 ```javascript
 import gulp from 'gulp';
