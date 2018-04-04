@@ -12,6 +12,10 @@ Wouldn't it be nice to have a central place that had it all? So once found - the
 [aurelia-open-id-connect](https://github.com/aurelia-contrib/aurelia-open-id-connect)  
 hooks `oidc-client-js` into aurelia router. And allows you to not write a lot of boilerplate code.
 
+# Binding
+## Knockout
+[aurelia-knockout](https://github.com/aurelia-contrib/aurelia-knockout)  
+Adds support for Knockout binding syntax to make transition from Durandal and Knockout to Aurelia simpler.
 
 # Utility
 
