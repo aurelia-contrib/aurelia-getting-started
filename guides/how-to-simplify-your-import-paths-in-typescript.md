@@ -13,9 +13,7 @@ When you'd really rather just do this
 import {log} from 'services/log';
 ```
 
-With some adjustments to your `tsconfig.json` you do just that. You need to set the `baseUrl` and the `paths` you want to map, you can find out more about [path mapping](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping) in the Typescript docs.
-
-T
+With some adjustments to your `tsconfig.json` you can do just that. You need to set the `baseUrl` and the `paths` you want to map, you can find out more about [path mapping](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping) in the Typescript docs.
 
 tsconfig.json
 ```json 
@@ -61,6 +59,23 @@ and you imports like this
 ```typescript
 import {log} from '@services/log';
 ```
+
+### Give Webpack a helping hand
+You need a little more config to get this working with webpack (3+). If you're using [ts-loader](https://github.com/TypeStrong/ts-loader) you're going to need to use [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin) and you'll end up adding it to your webpack config like this.
+
+```
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+module.exports = {
+  ...
+  resolve: {
+    plugins: [new TsconfigPathsPlugin({ /*configFile: "./path/to/tsconfig.json" */ })]
+  }
+  ...
+}
+```
+
+If you're using [awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader/issues) then at the time of writing you might struggle but the config is almost identical.
 
 ### TODO
 - How does this relate to the `path` section of `aurelia.json`?
