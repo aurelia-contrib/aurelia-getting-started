@@ -15,3 +15,5 @@ A collection of small task-oriented guides
 * [Show a spinner/loader only when loading is not instant](how-to-show-spinner-only-when-something-is-slow.md) are you using a spinner to inform the user that something is loading? Does it bother you that it flashes for some milliseconds when content is loaded fast? Here is how you can make it appear only if operation takes more than a threshold.
 
 * [Mock API's with .json files](how-to-create-a-simple-aurelia-api-mock-service.md) how to serve up static json files instead of real API calls.
+
+* [Add gzip compression for CLI project in development](how-to-enable-gzip-compression.md) Want to have an idea how big your bundles are and don't want to `au build --env prod` all the time? Now you can just look in browser developer tools.
