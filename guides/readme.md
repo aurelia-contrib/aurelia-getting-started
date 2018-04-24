@@ -6,6 +6,8 @@ A collection of small task-oriented guides
 
 * [How to debug aurelia-cli](how-to-debug-cli.md) aurelia-cli is just a nodejs program. And it is right there in node_modules folder of your CLI-based project. You can debug it like your own. All you have to do is launch it with debugger attached.
 
+* [Add gzip compression for CLI project in development](how-to-enable-gzip-compression.md) Want to have an idea how big your bundles are and don't want to `au build --env prod` all the time? Now you can just look in browser developer tools.
+
 ## Recipes
 
 * [How to use markdown files as views](how-to-support-markdown-preprocessing.md) if you are writing documentation site. Or just have some markdown files that you want to enhance with Aurelia - you can. Learn how you can modify markupProcessing task of CLI based project to use .md files as views.
@@ -16,4 +18,3 @@ A collection of small task-oriented guides
 
 * [Mock API's with .json files](how-to-create-a-simple-aurelia-api-mock-service.md) how to serve up static json files instead of real API calls.
 
-* [Add gzip compression for CLI project in development](how-to-enable-gzip-compression.md) Want to have an idea how big your bundles are and don't want to `au build --env prod` all the time? Now you can just look in browser developer tools.
