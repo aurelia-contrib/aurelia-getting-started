@@ -1,7 +1,7 @@
 
 
 
-# How to add gzip compression to ouput scripts for CLI project not based on webpack
+# How to add gzip compression for CLI project not based on webpack
 
 You might want to enable on-the-fly compression of output files while running your local server in order to limit the download 
 time of your bundles or just to be able to quickly evaluate the size reduction offered by compression.
