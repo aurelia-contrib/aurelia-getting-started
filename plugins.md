@@ -18,6 +18,10 @@ hooks `oidc-client-js` into aurelia router. And allows you to not write a lot of
 Adds support for Knockout binding syntax to make transition from Durandal and Knockout to Aurelia simpler.
 
 # Utility
+## Router Metadata
+[aurelia-router-metadata](https://github.com/aurelia-contrib/aurelia-router-metadata) 
+
+Extension to `aurelia-router` that adds eager loading capabilities for child routes, provides decorators `@routeConfig` and `@configureRouter` as an alternative to `configureRouter()`, and allows you to configure the `AppRouter` in your `main` file.
 
 ## Typed Observable
 [aurelia-typed-observable-plugin](https://github.com/aurelia-contrib/aurelia-typed-observable-plugin) 
