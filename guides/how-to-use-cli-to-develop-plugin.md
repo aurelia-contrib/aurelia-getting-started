@@ -35,7 +35,7 @@ What we want to do here is to extends the 3 tasks, instead of pipe to cli bundle
   // add plugin section
   "plugin": {
     "source": {
-      "js": "src/resources/**/*.js",
+      "js": "src/resources/**/*.js", // this will be different if you use TypeScript
       "html": "src/resources/**/*.html",
       "css": "src/resources/**/*.css" // this will be different if you use scss/less
     },
@@ -46,7 +46,7 @@ What we want to do here is to extends the 3 tasks, instead of pipe to cli bundle
 
 #### append following to `aurelia_project/tasks/transpile.js` task file
 
-Note, different from skeleton-plugin setup which transpiles into multiple formats (`dist/amd`, `dist/commonjs`, ...), our setup transpile directly to `dist/` in just `commonjs` format.
+Note, different from skeleton-plugin setup which transpiles into multiple formats (`dist/amd`, `dist/commonjs`, ...), our setup transpiles directly to `dist/` in just `commonjs` format.
 
 > webpack/jspm/cli+requirejs all can handle `commonjs` format. Other formats are unnecessary.
 
@@ -138,7 +138,7 @@ Now carefully exam all your plugin files in `src/resources` folder, put the real
 
 ### 5. important! control distributed npm package content
 
-I recommend just add following to `package.json`.
+I recommend to add following to `package.json`.
 
 ```js
 {
