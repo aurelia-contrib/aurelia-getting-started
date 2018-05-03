@@ -26,7 +26,7 @@ Here is a flow I have been using on our private plugins since August 2017. It's 
 
 `cli+requirejs` already did most job for us, it provided tasks `transpile`, `process-css` and `process-markup` for js/css/html files. By default, task `build` writes bundles to `scripts/`.
 
-What we want to do here is to extends the 3 tasks, instead of pipe to cli bundler, pipe to folder `dist/` directly.
+What we want to do here is to extend the 3 tasks. Instead of pipe to cli bundler, we pipe to folder `dist/` directly.
 
 #### first, (optional) write source and output folder into `aurelia.json`.
 
