@@ -155,7 +155,7 @@ The `"files"` is a white-list. Alternatively, you can use [`.npmignore` to defin
 
 ### 6. (recommended) npm scripts to support publishing
 
-For instance, for bare minium, you can add following to `package.json`.
+For instance, for bare minimum, you can add following to `package.json`.
 
 ```js
 {
