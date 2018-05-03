@@ -16,9 +16,9 @@ This might surprise you, but cli is all ready for the job.
 
 What you need is a small adjustment of your mindset:
 
-### Your `src/` folder, is not necessary the source folder. Imagining `src/` is just the dev env, the real source folder is `src\resources` (or `src\plugin-name`).
+### Your `src/` folder, is not necessary the source folder. Imagining `src/` is just the dev env, the real source folder is `src/resources` (or `src/plugin-name`).
 
-See the light? `src\resources\index.js` defines a `configure` function, exactly like the entry file of a plugin.
+See the light? `src/resources/index.js` defines a `configure` function, exactly like the entry file of a plugin.
 
 Here is a flow I have been using on our private plugins since August 2017. It's based on `cli+requirejs` setup, plus small adding in task files. Sorry for keeping my trick for so long.
 
