@@ -144,9 +144,7 @@ I recommend to add following to `package.json`.
 {
   // ...
   "main": "dist/index.js",
-  "files": [
-    "dist/**/*"
-  ],
+  "files": [ "dist" ],
   // ...
 }
 ```
