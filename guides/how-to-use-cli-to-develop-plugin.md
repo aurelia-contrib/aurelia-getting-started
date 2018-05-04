@@ -176,7 +176,7 @@ If your plugin is not public, you can remove `&& npm publish` from `"postversion
 
 > Remember I recommended ignoring `dist/` files in `.gitignore`. For private plugin, if you install from git repo directly, `npm` will use `npm prepare` to prepare the package (build all `dist/` files).
 
-> Currently, `yarn` has bug that [bypasses `npm prepare` when installing github hosted repo](https://github.com/yarnpkg/yarn/issues/5235). So don't use yarn, or don't ignore `dist/` files.
+> Currently, `yarn` has bug that [bypasses `npm prepare` when installing github hosted repo](https://github.com/yarnpkg/yarn/issues/5235). So if you want to npm install private github repo, don't use yarn, or don't ignore `dist/` files.
 
 ### 7. (recommended) support cli+requirejs `au import`
 
