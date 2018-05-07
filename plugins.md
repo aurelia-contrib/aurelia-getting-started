@@ -17,6 +17,11 @@ hooks `oidc-client-js` into aurelia router. And allows you to not write a lot of
 [aurelia-knockout](https://github.com/aurelia-contrib/aurelia-knockout)  
 Adds support for Knockout binding syntax to make transition from Durandal and Knockout to Aurelia simpler.
 
+# Templating
+## Dynamic Html
+[aurelia-dynamic-html](https://github.com/aurelia-contrib/aurelia-dynamic-html)  
+Custom element that takes (server- or client side) generated html and compiles it into a fully functional Aurelia View ([live demo](https://aurelia-contrib.github.io/aurelia-dynamic-html/))
+
 # Utility
 ## Router Metadata
 [aurelia-router-metadata](https://github.com/aurelia-contrib/aurelia-router-metadata) 
