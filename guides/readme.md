@@ -8,6 +8,8 @@ A collection of small task-oriented guides
 
 * [Add gzip compression for CLI project in development](how-to-enable-gzip-compression.md) Want to have an idea how big your bundles are and don't want to `au build --env prod` all the time? Now you can just look in browser developer tools.
 
+* [How to use aurelia-cli to develop plugin](how-to-use-cli-to-develop-plugin.md) This might surprise you, but aurelia-cli is all ready for the job to develop Aurelia plugin, with great benefit over current dev flow with [skeleton-plugin](https://github.com/aurelia/skeleton-plugin).
+
 ## Recipes
 
 * [How to use markdown files as views](how-to-support-markdown-preprocessing.md) if you are writing documentation site. Or just have some markdown files that you want to enhance with Aurelia - you can. Learn how you can modify markupProcessing task of CLI based project to use .md files as views.
