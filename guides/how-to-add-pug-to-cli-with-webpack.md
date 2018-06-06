@@ -1,11 +1,15 @@
 # Configuring Pug with Webpack 4 and the Aurelia CLI
 
 date: 2018-05-07 16:00
-status: Still working out a few kinks in this how-to
+status: Not fully functional
 
 The [Aurelia CLI](https://aurelia.io/docs/cli) (currently v0.33.1) [does not yet support](https://github.com/aurelia/skeleton-navigation/pull/769) [pug](http://pugjs.org) templates.
-This post shows how to setup pug once you've installed a new webpack4-based Aurelia project.
 
+This post shows my effort so far to configure [pug](http://pugjs.org) on top of a new webpack4-based Aurelia project.
+There are two outstanding issues that I have not yet resolved:
+
+- Pug file `require` statements are not resolving the css file (_e.g._ `require(from='app.styl')`)
+- Have not yet tackled the issue of passing `locals` to index.pug
 
 ## Configure
 
@@ -21,7 +25,7 @@ yarn add -D apply-loader
 
 ## webpack.config.js
 
-Within the webpack.config.js `module.rules` array you'll need to add the following rule:
+Within the webpack.config.js `module.rules` array you'll need to add the following rules:
 
 ```javascript
   rules: [
@@ -49,6 +53,7 @@ And within the list of plugins you'll need to
       inject: true,
       metadata: {
         // available in index.pug under locals
+        // TODO: This doesn't work, and we need to figure out how to pass these via apply-loader
         title, server, baseUrl
       }
     })
@@ -64,14 +69,15 @@ In pug these are attached to `locals`.
 Pug _evals_ anything within ``#{`` and `}``, so you can see what variables are available by using `Object.keys(locals)`.
 It works out that our metadata is actually attached to `locals.htmlWebpackPlugin.options.metadata`.
 
-NOTE: Attaching to locals is not yet working. I'll update this when I figure out how to get this working.
+NOTE: Attaching to locals is not yet working.
 
 ```pug
 doctype html
 keys #{Object.keys(locals.htmlWebpackPlugin.options.metadata)}
 ```
 
-The resultant index.pug is here. Note that I've added a few additional script includes.
+The resultant index.pug is here. 
+Note that I've added a few additional script includes for illustrative purposes.
 
 ```pug
 - var metadata = locals.htmlWebpackPlugin.options.metadata
