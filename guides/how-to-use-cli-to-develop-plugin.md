@@ -118,13 +118,13 @@ With these little code, we already got `au build-plugin` to do what we want!
 
 In addition, there are few housekeeping things.
 
-### 3. (recommended) ignore `/scripts` and `/dists` in `.gitignore`
+### 3. (recommended) ignore `/scripts` and `/dist` in `.gitignore`
 
 If you want your repo to be both the source repo and github pages repo, you should commit `/scripts` files instead of ignoring it. Why not, all your `src/` files can be both dev playground and live doc.
 
 > Remember to [turn on `rev: "prod"`](http://aurelia.io/docs/cli/bundler#build-revisions) (to avoid cache issue on github pages site) in `aurelia.json` and `au build --env prod` when release new github pages.
 
-For `/dists`, I will explain in `npm publish` shortly.
+For `/dist`, I will explain in `npm publish` shortly.
 
 ### 4. important! in `package.json`, move all `dependencies` to `devDependencies`, then craft `dependencies` or `peerDependencies` carefully
 
