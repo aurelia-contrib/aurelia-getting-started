@@ -42,3 +42,7 @@ age:number
 
 Throttle getter to make Aurelia rendering efficient. This `getterThrottle` decorator works for both computedFrom and dirty-check properties, reduces the number of calls (Aurelia calls and your calls) to one for every rendering cycle.
 
+## Combo
+[aurelia-combo](https://github.com/aurelia-contrib/aurelia-combo)
+
+An Aurelia plugin for easy keyboard combo short-cuts using [keymaster](https://github.com/madrobby/keymaster).
