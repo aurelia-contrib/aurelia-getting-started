@@ -1,12 +1,14 @@
 # How to use aurelia-cli to develop Aurelia plugin
 
+> This guide has been updated to match aurelia-cli version 1.0.0-beta.2 (or above).
+
 The current way [skeleton-plugin](https://github.com/aurelia/skeleton-plugin) to develop Aurelia plugin bothered me.
 
 1. need to maintain jspm config.
 2. testing is hard, requires many mocks on quite a few Aurelia internal objects which I am not familiar with.
 3. dev flow is not smooth, need to use `npm link` in another dev app in order to try my plugin.
 
-We love using `au run --watch` and `au test` in app dev, if only there is a way to use cli to develop plugin...
+We love using `au run` and `au test` in app dev, if only there is a way to use cli to develop plugin...
 
 Well, here is how to.
 
@@ -20,7 +22,7 @@ What you need is a small adjustment of your mindset:
 
 See the light? `src/resources/index.js` defines a `configure` function, exactly like the entry file of a plugin.
 
-Here is a flow I have been using on our private plugins since August 2017. It's based on `cli+requirejs` setup, plus small adding in task files. Sorry for keeping my trick for so long.
+Here is a flow I have been using on our private plugins since August 2017. It's based on `cli+requirejs` setup, plus small adding in task files.
 
 ### 1. update tasks
 
@@ -50,6 +52,7 @@ Note, different from skeleton-plugin setup which transpiles into multiple format
 
 > webpack/jspm/cli+requirejs all can handle `commonjs` format. Other formats are unnecessary.
 
+For ESNext project:
 ```js
 // build plugin js files
 // this will be slightly different if you use TypeScript
@@ -57,9 +60,32 @@ export function transpilePlugin() {
   return gulp.src(project.plugin.source.js)
     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     // .pipe(sourcemaps.init())
-    .pipe(babel()) // use default cjs format
+    .pipe(babel({
+      plugins: ['@babel/plugin-transform-modules-commonjs'] // note we use commonjs format
+    }))
     // .pipe(gulpUglify())
     // .pipe(sourcemaps.write())
+    .pipe(gulp.dest(project.plugin.output));
+}
+```
+
+For TypeScript project
+```ts
+export function transpilePlugin() {
+  const typescriptCompiler = ts.createProject('tsconfig.json', {
+    typescript: require('typescript'),
+    allowJs: false, declaration: true // write d.ts files
+    'module': 'commonjs' // note we use commonjs format
+  });
+
+  let dts = gulp.src(project.transpiler.dtsSource);
+  let src = gulp.src(project.plugin.source.js);
+
+  return eventStream.merge(dts, src)
+    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
+    // .pipe(sourcemaps.init())
+    .pipe(typescriptCompiler())
+    // .pipe(sourcemaps.write({ sourceRoot: 'src' }))
     .pipe(gulp.dest(project.plugin.output));
 }
 ```
@@ -134,7 +160,7 @@ Now carefully exam all your plugin files in `src/resources` folder, put the real
 
 > I recommend using `peerDependencies` for core aurelia libs. Because for your plugin users, they likely already got all the Aurelia libs. Only use `dependencies` for additional dependencies like `lodash` or `jquery`.
 
-> Write dependency as permissive as possible, use `"aurelia-binding": "^1.0.0"`, not `"aurelia-binding": "^1.7.1"`.
+> Write dependency as permissive as possible, use `"aurelia-binding": "^2.0.0"`, not `"aurelia-binding": "^2.1.5"`.
 
 ### 5. important! control distributed npm package content
 
@@ -178,33 +204,8 @@ If your plugin is not public, you can remove `&& npm publish` from `"postversion
 
 > Currently, `yarn` has bug that [bypasses `npm prepare` when installing github hosted repo](https://github.com/yarnpkg/yarn/issues/5235). So if you want to npm install private github repo, don't use yarn, or don't ignore `dist/` files.
 
-### 7. (recommended) support cli+requirejs `au import`
-
-This will be obsoleted by unreleased cli [auto-tracing](https://github.com/aurelia/cli/pull/862), but for now you should do little work to support the users.
-
-Add following to `package.json`.
-
-```js
-{
-  // ...
-  "aurelia": {
-    "import": {
-      "dependencies": [
-        "some-npm-package", // like `lodash` if your plugin depends on it
-        {
-          "name": "your-plugin-package-name",
-          "main": "index",
-          "path": "../node_modules/your-plugin-package-name/dist",
-          "resources": [ "**/*.{js,html,css}" ] // this is optional, but can avoid some troubles
-        }
-      ]
-    }
-  }
-}
-```
-
 ## That's it!
 
-Now you can enjoy `au run --watch` and `au test` to build your plugin just like building a normal app. The best part for me, is now I can test my plugin using `aurelia-testing` instead of scratching my head on how to mock up Aurelia internals.
+Now you can enjoy `au run` and `au test` to build your plugin just like building a normal app. The best part for me, is now I can test my plugin using `aurelia-testing` instead of scratching my head on how to mock up Aurelia internals.
 
 Want an example? [`bcx-aurelia-reorderable-repeat`](https://github.com/buttonwoodcx/bcx-aurelia-reorderable-repeat).
