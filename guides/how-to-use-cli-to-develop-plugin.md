@@ -61,7 +61,7 @@ export function transpilePlugin() {
     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     // .pipe(sourcemaps.init())
     .pipe(babel({
-      plugins: ['@babel/plugin-transform-modules-commonjs'] // note we use commonjs format
+      plugins: [['@babel/plugin-transform-modules-commonjs', {loose: true}]] // note we use commonjs format
     }))
     // .pipe(gulpUglify())
     // .pipe(sourcemaps.write())
