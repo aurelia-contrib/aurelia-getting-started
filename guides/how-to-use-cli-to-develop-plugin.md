@@ -208,4 +208,6 @@ If your plugin is not public, you can remove `&& npm publish` from `"postversion
 
 Now you can enjoy `au run` and `au test` to build your plugin just like building a normal app. The best part for me, is now I can test my plugin using `aurelia-testing` instead of scratching my head on how to mock up Aurelia internals.
 
-Want an example? [`bcx-aurelia-reorderable-repeat`](https://github.com/buttonwoodcx/bcx-aurelia-reorderable-repeat).
+Want an example?
+* esnext [`bcx-aurelia-reorderable-repeat`](https://github.com/buttonwoodcx/bcx-aurelia-reorderable-repeat)
+* TypeScript [`demo-plugin-cli-ts`](https://github.com/huochunpeng/demo-plugin-cli-ts)
