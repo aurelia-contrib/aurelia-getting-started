@@ -1,3 +1,5 @@
+# This guide is deprecated, aurelia-cli now has [plugin support built-in](https://aurelia.io/docs/plugins/write-new-plugin/).
+
 # How to use aurelia-cli to develop Aurelia plugin
 
 > This guide has been updated to match aurelia-cli version 1.0.0-beta.2 (or above).
