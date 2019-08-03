@@ -1,10 +1,14 @@
-# Configuring Pug with Webpack 4 and the Aurelia CLI
+# Configuring support for PUG and Stylus using the Aurelia CLI with Webpack
 
-The [Aurelia CLI](https://aurelia.io/docs/cli) (currently v1.0.2) [does not yet
-have direct support](https://github.com/aurelia/skeleton-navigation/pull/769)
-for [pug](http://pugjs.org) templates. Here we show how to modify
+The [Aurelia CLI](https://aurelia.io/docs/cli) (currently v1.0.2) [does not directly support](https://github.com/aurelia/skeleton-navigation/pull/769)
+Pug templates. Here we show how to modify
 `webpack.config.js` and organize a project with [pug](http://pugjs.org) and
 [stylus](http://stylus-lang.com/) support.
+
+The configuration adds:
+
+- [pug](http://pugjs.org) support
+- use of HTML and CSS preprocessors in the same project
 
 ## Configure
 
@@ -35,7 +39,7 @@ npm install -D pug pug-html-loader
 
 Within `webpack.config.js` there are several changes.
 
-In the `module.rules` array you'll need to add a pug rule:
+In the `module.rules` array you'll need to add a new pug rule:
 
 ```javascript
 rules: [
@@ -57,13 +61,15 @@ rules: [
 ];
 ```
 
-Also in the `module.rules` array you will need to replace this
+Also in the `module.rules` array you will need to replace this html rule:
 
 ```js
       { test: /\.html$/i, loader: "html-loader" },
 ```
 
-with this ([see here for more info](https://github.com/aurelia/webpack-plugin/issues/47))
+with this ([this addresses the problem of using both an HTML and CSS
+preprocessor in the same
+project](https://github.com/aurelia/webpack-plugin/issues/47)):
 
 ```js
       {
@@ -74,7 +80,8 @@ with this ([see here for more info](https://github.com/aurelia/webpack-plugin/is
 
 Within the list of plugins you'll need to:
 
-- configure webpack to load your `index.pug` file rather than the Aurelia CLI default `index.ejs` file
+- configure webpack to load your `index.pug` file rather than the Aurelia CLI
+  default `index.ejs` file
 - tell Aurelia that your view files are _.pug_ or _.html_ files
 
 ```javascript
@@ -112,8 +119,9 @@ template
 
 ### index.pug
 
-Create `index.pug` to replace `index.ejs` as shown here.
-Note that I've added a few additional script `include` elements for illustrative purposes.
+Create `index.pug` to replace `index.ejs` as shown here. Note that I've added a
+few additional script `include` elements for illustrative purposes. These
+`include` references are to files stored within your project.
 
 ```pug
 doctype html
@@ -183,9 +191,3 @@ global components using `my-component.pug` rather than
 file. You can read more about this in
 [this blog post](http://jimpravetz.com/blog/2018/05/webpack-aurelia/), which I
 may migrate to these how-to pages once it's more complete.
-
-## References
-
-- stylus - http://stylus-lang.com/
-- pug - http://pugjs.org
-- aurelia-webpack-plugin issue [Different templating language support #47](https://github.com/aurelia/webpack-plugin/issues/47)
