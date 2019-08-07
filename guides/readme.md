@@ -8,7 +8,7 @@ A collection of small task-oriented guides
 
 * [Add gzip compression for CLI project in development](how-to-enable-gzip-compression.md) Want to have an idea how big your bundles are and don't want to `au build --env prod` all the time? Now you can just look in browser developer tools.
 
-* [How to use aurelia-cli to develop plugin](how-to-use-cli-to-develop-plugin.md) This might surprise you, but aurelia-cli is all ready for the job to develop Aurelia plugin, with great benefit over current dev flow with [skeleton-plugin](https://github.com/aurelia/skeleton-plugin).
+* (deprecated, aurelia-cli now has [plugin support built-in](https://aurelia.io/docs/plugins/write-new-plugin/)) [How to use aurelia-cli to develop plugin](how-to-use-cli-to-develop-plugin.md) This might surprise you, but aurelia-cli is all ready for the job to develop Aurelia plugin, with great benefit over current dev flow with [skeleton-plugin](https://github.com/aurelia/skeleton-plugin).
 
 ## Recipes
 
