@@ -146,6 +146,8 @@ with `app.pug`
 template
   require(from='app.styl')
   h1 ${message}
+  p #{metadata.title}
+  p #{metadata.server}
 ```
 
 and create `app.styl`
