@@ -1,18 +1,20 @@
-# Configuring support for PUG and Stylus using the Aurelia CLI with Webpack
+# Configuring Pug and Stylus with Webpack 4 and the Aurelia CLI
 
-The [Aurelia CLI](https://aurelia.io/docs/cli) (currently v1.0.2) [does not directly support](https://github.com/aurelia/skeleton-navigation/pull/769)
-Pug templates. Here we show how to modify
-`webpack.config.js` and organize a project with [pug](http://pugjs.org) and
-[stylus](http://stylus-lang.com/) support.
+The [Aurelia CLI](https://aurelia.io/docs/cli) (currently v1.0.2) [does not
+directly support](https://github.com/aurelia/skeleton-navigation/pull/769) Pug
+templates. Here we show how to modify `webpack.config.js` and organize a project
+with [pug](http://pugjs.org) and [stylus](http://stylus-lang.com/) support. This
+example should help with any html or css preprocessor.
 
-The configuration adds:
+The configuration:
 
-- [pug](http://pugjs.org) support
-- use of HTML and CSS preprocessors in the same project
+- adds [pug](http://pugjs.org) support
+- shows use of HTML and CSS preprocessors in the same project
 
 ## Configure
 
-Create a new aurelia project using the Aurelia CLI. These are the options I used in this example.
+Create a new aurelia project using the Aurelia CLI. These are the options used
+in this example.
 
 - _Custom App_
 - Bundler - _Webpack_
@@ -37,17 +39,59 @@ npm install -D pug pug-html-loader
 
 ## webpack.config.js
 
-Within `webpack.config.js` there are several changes.
+Within `webpack.config.js` there are rules and plugin initialization changes.
 
-In the `module.rules` array you'll need to add a new pug rule:
+### Rules
+
+In the `module.rules` array you should modify the `.css` and `.styl` rules to
+test for `pug` as well as `html` files.
+
+```js
+rules: [
+  {
+    test: /\.css$/i,
+    issuer: [{ not: [{ test: /\.(html|pug)$/i }] }],  // <-- modify
+    use: extractCss
+      ? [ { loader: MiniCssExtractPlugin.loader }, 'css-loader' ]
+      : ['style-loader', ...cssRules]
+  },
+  {
+    test: /\.css$/i,
+    issuer: [{ test: /\.(html|pug)$/i }],             // <-- modify
+    use: cssRules
+  },
+  {
+    test: /\.styl$/i,
+    use: extractCss
+      ? [ { loader: MiniCssExtractPlugin.loader }, ...cssRules, 'stylus-loader' ]
+      : ['style-loader', ...cssRules, 'stylus-loader'],
+    issuer: /\.[tj]s$/i
+  },
+  {
+    test: /\.styl$/i,
+    use: ['css-loader', 'stylus-loader'],
+    issuer: /\.(html|pug)$/i                          // <-- modify
+  },
+```
+
+Also add `pug-html-loader` to the front of the `.html` loaders list.
+
+```js
+  {
+    test: /\.html$/i,
+    loader: ["html-loader", "pug-html-loader"]
+  },
+```
+
+And of course add this new `.pug` rule.
 
 ```javascript
-rules: [
   {
     test: /\.pug$/,
     exclude: ["/node_modules/"],
     use: [
       "html-loader",
+      'aurelia-webpack-plugin/html-requires-loader',
       {
         loader: "pug-html-loader",
         options: {
@@ -57,26 +101,14 @@ rules: [
         }
       }
     ]
-  }
-];
+  },
+  // ...
 ```
 
-Also in the `module.rules` array you will need to replace this html rule:
+Note above how we are passing variables to the pug pages using `options`. These
+are just variables available within the `webpack.config.js` file.
 
-```js
-      { test: /\.html$/i, loader: "html-loader" },
-```
-
-with this ([this addresses the problem of using both an HTML and CSS
-preprocessor in the same
-project](https://github.com/aurelia/webpack-plugin/issues/47)):
-
-```js
-      {
-        test: /\.html$/i,
-        loader: ["html-loader", "pug-html-loader"]
-      },
-```
+### Plugins
 
 Within the list of plugins you'll need to:
 
@@ -91,7 +123,7 @@ Within the list of plugins you'll need to:
       inject: true
     })
     new AureliaPlugin( { viewsExtensions: ['.pug' ,'.html']} ),
- ]
+    // ...
 ```
 
 Note that we have moved the metadata object with it's properties `title`,
@@ -100,9 +132,7 @@ Note that we have moved the metadata object with it's properties `title`,
 
 ## Converting Files
 
-### app.pug
-
-Replace `app.html` with `app.pug` and change it's contents from
+Replace `app.html`
 
 ```html
 <template>
@@ -110,16 +140,23 @@ Replace `app.html` with `app.pug` and change it's contents from
 </template>
 ```
 
-to
+with `app.pug`
 
 ```pug
 template
+  require(from='app.styl')
   h1 ${message}
 ```
 
-### index.pug
+and create `app.styl`
 
-Create `index.pug` to replace `index.ejs` as shown here. Note that I've added a
+```css
+body {
+  color: green;
+}
+```
+
+Replace `index.ejs` with `index.pug`. Note that we've added a
 few additional script `include` elements for illustrative purposes. These
 `include` references are to files stored within your project.
 
@@ -147,11 +184,9 @@ html
       script(src='/webpack-dev-server.js')
 ```
 
-### main.ts
-
-We need a bit of [additional
-config](https://github.com/aurelia/skeleton-navigation/issues/396#issuecomment-207823852)
-so that views are associated with _pug_. Here we've added the method
+In `main.ts` we need a bit of [additional
+config](https://aurelia.io/docs/fundamentals/app-configuration-and-startup#customizing-conventions)
+to associate views with _pug_. Here we've added the method
 `convertOriginToViewUrl` to `ViewLocator`.
 
 ```ts
@@ -183,11 +218,9 @@ export function configure(aurelia: Aurelia) {
 }
 ```
 
-### One last bit
+### Global Resources
 
-This isn't everything you need to know. You'll also need to declare
-global components using `my-component.pug` rather than
-`my-component.html` in cases where there is not an associated .js
-file. You can read more about this in
-[this blog post](http://jimpravetz.com/blog/2018/05/webpack-aurelia/), which I
-may migrate to these how-to pages once it's more complete.
+Aurelia requires that you [declare your project's global
+components](https://aurelia.io/docs/fundamentals/app-configuration-and-startup#making-resources-global).
+In cases where there are no associated .js files, you will need to declare your
+component using a `.pug` extension rather than `.html` extension.
