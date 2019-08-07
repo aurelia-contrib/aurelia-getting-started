@@ -1,4 +1,4 @@
-# Configuring Pug and Stylus with Webpack 4 and the Aurelia CLI
+# Configuring Pug and Stylus with Webpack and the Aurelia CLI
 
 The [Aurelia CLI](https://aurelia.io/docs/cli) (currently v1.0.2) [does not
 directly support](https://github.com/aurelia/skeleton-navigation/pull/769) Pug
